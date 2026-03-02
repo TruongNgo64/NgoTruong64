@@ -1,87 +1,48 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+function Square({ children, bgColor }) {
+  return (
+    <View style={[styles.box, { backgroundColor: bgColor }]}>
+      {children}
+    </View>
+  );
+}
 
 export default function App() {
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-    >
-      <StatusBar style="auto" />
+    <View style={styles.screen}>
+      <Square bgColor="blue">
+        <Text style={styles.text}>Square 1</Text>
+      </Square>
 
-      {/* Title */}
-      <Text style={styles.title}>Đăng nhập</Text>
+      <Square bgColor="yellow">
+        <Text style={styles.text}>Square 2</Text>
+      </Square>
 
-      {/* Phone input section */}
-      <View style={styles.form}>
-        <Text style={styles.label}>Nhập số điện thoại</Text>
-        <Text style={styles.desc}>
-          Dùng số điện thoại để đăng nhập hoặc đăng ký tài khoản tại OneHousing Pro
-        </Text>
-
-        <TextInput
-          style={styles.input}
-          placeholder="Nhập số điện thoại của bạn"
-          keyboardType="phone-pad"
-        />
-      </View>
-
-      {/* Button */}
-      <TouchableOpacity style={styles.button} disabled>
-        <Text style={styles.buttonText}>Tiếp tục</Text>
-      </TouchableOpacity>
-    </KeyboardAvoidingView>
+      <Square bgColor="red">
+        <Text style={styles.text}>Square 3</Text>
+      </Square>
+    </View>
   );
 }
+
 const styles = StyleSheet.create({
-  container: {
+  screen: {
     flex: 1,
-    backgroundColor: '#fff',
-    paddingHorizontal: 24,
-    paddingTop: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
   },
-
-  title: {
-    fontSize: 20,
-    fontWeight: '600',
-    textAlign: 'center',
-    marginBottom: 40,
-  },
-
-  form: {
-    marginBottom: 30,
-  },
-
-  label: {
-    fontSize: 16,
-    fontWeight: '600',
-    marginBottom: 8,
-  },
-
-  desc: {
-    fontSize: 13,
-    color: '#666',
-    marginBottom: 16,
-  },
-
-  input: {
-    borderBottomWidth: 1,
-    borderBottomColor: '#ccc',
-    paddingVertical: 8,
-    fontSize: 16,
-  },
-
-  button: {
-    marginTop: 20,
-    backgroundColor: '#e5e5e5',
-    paddingVertical: 14,
-    borderRadius: 8,
+  box: {
+    width: 150,
+    height: 150,
+    margin:10,
+    justifyContent: 'center',
     alignItems: 'center',
   },
-
-  buttonText: {
-    color: '#999',
-    fontSize: 16,
-    fontWeight: '600',
+  text: {
+    fontSize: 24,
+    fontWeight: 'bold',
   },
 });
